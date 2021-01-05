@@ -40,7 +40,7 @@ plot.onclick = function (e) {
     }
 };
 
-// drag
+// move
 plot.onmousemove = function (e) {
     let mouse_x = e.clientX
     let mouse_y = e.clientY
