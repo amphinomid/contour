@@ -25,22 +25,37 @@ plot.onclick = function (e) {
     // console.log(click_x + ', ' + click_y)
     // console.log('--')
     if (recording) {
-        let range = 50
-        let step_size = 10
-        for (let i = 0; i <= range; i += step_size) {
-            for (let dx = -i; dx <= i; dx++) {
-                for (let dy = -i; dy <= i; dy++) {
+        let max_radius = 100
+        let step_size = 1
+        for (let radius = 0; radius <= max_radius; radius += step_size) {
+            for (let dx = -radius; dx <= radius; dx++) {
+                for (let dy = -radius; dy <= radius; dy++) {
                     let new_x = click_x + dx
                     let new_y = click_y + dy
-                    // console.log(new_x + ', ' + new_y)
-                    if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
-                        z[new_x * window.innerHeight + new_y] += 10
-                        // console.log(z[new_x * window.innerHeight + new_y])
-                        // console.log('--')
+                    if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight
+                        && ((new_x - click_x) * (new_x - click_x) + (new_y - click_y) * (new_y - click_y) <= radius * radius)) {
+                        z[new_x * window.innerHeight + new_y]++
                     }
                 }
             }
         }
+
+        // let range = 50
+        // let step_size = 1
+        // for (let i = 0; i <= range; i += step_size) {
+        //     for (let dx = -i; dx <= i; dx++) {
+        //         for (let dy = -i; dy <= i; dy++) {
+        //             let new_x = click_x + dx
+        //             let new_y = click_y + dy
+        //             // console.log(new_x + ', ' + new_y)
+        //             if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+        //                 z[new_x * window.innerHeight + new_y]++
+        //                 // console.log(z[new_x * window.innerHeight + new_y])
+        //                 // console.log('--')
+        //             }
+        //         }
+        //     }
+        // }
     }
 };
 
