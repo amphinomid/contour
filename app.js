@@ -9,31 +9,30 @@ let scroll_dist = 0
 document.getElementById('toggle_button').onclick = function () {
     recording = !recording
     if (recording) {
-        // console.log('start')
+        console.log('start')
         init()
     } else {
-        // console.log('end')
+        console.log('end')
         draw_plot()
     }
 };
 
 // click
-plot.onclick = function(e) {
+plot.onclick = function (e) {
     let mouse_x = e.clientX
     let mouse_y = e.clientY
     // console.log(mouse_x + ', ' + mouse_y)
-    // console.log('--')
     if (recording) {
-        let max_radius = 100
-        let step_size = 1
-        for (let radius = 0; radius <= max_radius; radius += step_size) {
-            for (let dx = -radius; dx <= radius; dx++) {
-                for (let dy = -radius; dy <= radius; dy++) {
-                    let new_x = mouse_x + dx
-                    let new_y = mouse_y + dy
-                    if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight
-                        && ((new_x - mouse_x) * (new_x - mouse_x) + (new_y - mouse_y) * (new_y - mouse_y) <= radius * radius)) {
-                        z[new_x * window.innerHeight + new_y]++
+        let radius = 75
+        for (let dx = -radius; dx <= radius; dx++) {
+            for (let dy = -radius; dy <= radius; dy++) {
+                let new_x = mouse_x + dx
+                let new_y = mouse_y + dy
+                if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+                    let dist = Math.sqrt((new_x - mouse_x) * (new_x - mouse_x) + (new_y - mouse_y) * (new_y - mouse_y))
+                    if (dist <= radius) {
+                        z[new_x * window.innerHeight + new_y] += radius - dist
+                        // console.log(new_x + ', ' + new_y + ', ' + z[new_x * window.innerHeight + new_y])
                     }
                 }
             }
@@ -42,22 +41,21 @@ plot.onclick = function(e) {
 };
 
 // drag
-plot.onmousemove = function(e) {
+plot.onmousemove = function (e) {
     let mouse_x = e.clientX
     let mouse_y = e.clientY
     // console.log(mouse_x + ', ' + mouse_y)
-    // console.log('--')
     if (recording) {
-        let max_radius = 100
-        let step_size = 1
-        for (let radius = 0; radius <= max_radius; radius += step_size) {
-            for (let dx = -radius; dx <= radius; dx++) {
-                for (let dy = -radius; dy <= radius; dy++) {
-                    let new_x = mouse_x + dx
-                    let new_y = mouse_y + dy
-                    if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight
-                        && ((new_x - mouse_x) * (new_x - mouse_x) + (new_y - mouse_y) * (new_y - mouse_y) <= radius * radius)) {
-                        z[new_x * window.innerHeight + new_y]++
+        let radius = 75
+        for (let dx = -radius; dx <= radius; dx++) {
+            for (let dy = -radius; dy <= radius; dy++) {
+                let new_x = mouse_x + dx
+                let new_y = mouse_y + dy
+                if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+                    let dist = Math.sqrt((new_x - mouse_x) * (new_x - mouse_x) + (new_y - mouse_y) * (new_y - mouse_y))
+                    if (dist <= radius) {
+                        z[new_x * window.innerHeight + new_y] += radius - dist
+                        // console.log(new_x + ', ' + new_y + ', ' + z[new_x * window.innerHeight + new_y])
                     }
                 }
             }
@@ -66,11 +64,16 @@ plot.onmousemove = function(e) {
 };
 
 // scroll
-plot.onscroll = function() {
+window.onscroll = function () {
     scroll_dist += window.scrollY // later: modify to include change (for scrolling up)
-    for (let i = 0; i < window.innerWidth + 70; i += max(window.innerWidth + 70 - scroll_dist, 1)) {
+    console.log(scroll_dist)
+    let added = 1
+    for (let i = 0; i < window.innerWidth + 70; i++) {
+        if (i % Math.max(window.innerWidth + 70 - scroll_dist, 1) == 0) {
+            added++
+        }
         for (let j = 0; j < window.innerHeight; j++) {
-            z[i * window.innerHeight + j]++
+            z[i * window.innerHeight + j] += added
         }
     }
 }
