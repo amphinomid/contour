@@ -1,54 +1,94 @@
-// var size = 100, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
+let plot = document.getElementById('plot')
+let recording = false
+let x = []
+let y = []
+let z = []
+let dx = [-1, 1, -1, 1]
+let dy = [1, -1, -1, 1]
 
-// for(var i = 0; i < size; i++) {
-// 	x[i] = y[i] = -2 * Math.PI + 4 * Math.PI * i / size;
-//   	z[i] = new Array(size);
-// }
-
-// for(var i = 0; i < size; i++) {
-//   	for(j = 0; j < size; j++) {
-//     	var r2 = x[i]*x[i] + y[j]*y[j];
-//     	z[i][j] = Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
-//  	}
-// }
-
-var data = [{
-    x: [0, 1, 2, 3, 4, 5, 6, 7],
-    y: [0, 1, 2, 3, 4, 5, 6, 7],
-    z: [0, 1, 2, 3, 4, 5, 6, 7],
-    type: 'contour',
-    contours: {
-        coloring: 'lines',
-    },
-    colorscale: [
-        ['0', '#000000'],
-        ['1', '#000000'],
-    ],
-    colorbar: {
-        thickness: 0,
+// start / stop recording with button (temporary)
+document.getElementById('toggle_button').onclick = function () {
+    recording = !recording
+    if (recording) {
+        console.log('start')
+        init()
+    } else {
+        console.log('end')
+        draw_plot()
     }
-}];
-
-var layout = {
-    width: window.innerWidth + 70,
-    height: window.innerHeight,
-    xaxis: {
-        visible: false,
-    },
-    yaxis: {
-        visible: false,
-    },
-    coloraxis_showScale: false,
-    margin: {
-        t: 0,
-        r: 0,
-        b: 0,
-        l: 0,
-    },
-    paper_bgcolor: '#ffffff',
-    plot_bgcolor: '#ffffff',
 };
 
-Plotly.newPlot('plot', data, layout, {
-    displayModeBar: false,
-});
+// click
+plot.onclick = function (e) {
+    let click_x = e.clientX
+    let click_y = e.clientY
+    if (recording) {
+        for (let i = 0; i < 4; i++) {
+            let new_x = click_x + dx[i]
+            let new_y = click_y + dy[i]
+            if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+                z[new_x * new_y + new_y]++
+            }
+        }
+    }
+};
+
+// drag
+
+// scroll
+
+function init() {
+    recording = true
+
+    // initialize flat plane
+    for (let i = 0; i < window.innerWidth + 70; i++) {
+        for (let j = 0; j < window.innerHeight; j++) {
+            x.push(i)
+            y.push(j)
+            z.push(0)
+        }
+    }
+}
+
+function draw_plot() {
+    let data = [{
+        x: x,
+        y: y,
+        z: z,
+        type: 'contour',
+        contours: {
+            coloring: 'lines',
+        },
+        colorscale: [
+            ['0', '#ffffff'],
+            ['1', '#ffffff'],
+        ],
+        colorbar: {
+            thickness: 0,
+        }
+    }];
+
+    let layout = {
+        width: window.innerWidth + 70,
+        height: window.innerHeight,
+        xaxis: {
+            visible: false,
+        },
+        yaxis: {
+            visible: false,
+        },
+        coloraxis_showScale: false,
+        margin: {
+            t: 0,
+            r: 0,
+            b: 0,
+            l: 0,
+        },
+        paper_bgcolor: '#000000',
+        plot_bgcolor: '#000000',
+    };
+
+    Plotly.newPlot('plot', data, layout, {
+        displayModeBar: false,
+    });
+}

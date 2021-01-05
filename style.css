@@ -6,3 +6,8 @@
     top: 0;
     overflow: hidden;
 }
+
+#toggle-button {
+    cursor: pointer;
+    background-color: black;
+}
