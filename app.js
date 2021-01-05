@@ -46,7 +46,7 @@ plot.onmousemove = function (e) {
     let mouse_y = e.clientY
     // console.log(mouse_x + ', ' + mouse_y)
     if (recording) {
-        let radius = 75
+        let radius = 50
         for (let dx = -radius; dx <= radius; dx++) {
             for (let dy = -radius; dy <= radius; dy++) {
                 let new_x = mouse_x + dx
@@ -67,10 +67,12 @@ plot.onmousemove = function (e) {
 window.onscroll = function () {
     scroll_dist += window.scrollY // later: modify to include change (for scrolling up)
     console.log(scroll_dist)
-    let added = 1
+    let added = 0
+    let interval = (window.innerWidth + 70 - scroll_dist) / 5
     for (let i = 0; i < window.innerWidth + 70; i++) {
-        if (i % Math.max(window.innerWidth + 70 - scroll_dist, 1) == 0) {
+        if (i % Math.max(interval, 1) == 0) {
             added++
+            console.log(i + ': ' + added)
         }
         for (let j = 0; j < window.innerHeight; j++) {
             z[i * window.innerHeight + j] += added
