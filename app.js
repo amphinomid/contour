@@ -23,11 +23,17 @@ plot.onclick = function (e) {
     let click_x = e.clientX
     let click_y = e.clientY
     if (recording) {
-        for (let i = 0; i < 4; i++) {
-            let new_x = click_x + dx[i]
-            let new_y = click_y + dy[i]
-            if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
-                z[new_x * new_y + new_y]++
+        for (let i = 1; i <= 50; i++) {
+            for (let j = 0; j < 4; j++) {
+                let new_x = click_x + i * dx[j]
+                let new_y = click_y + i * dy[j]
+                console.log(new_x)
+                console.log(new_y)
+                console.log(z[new_x * new_y + new_y])
+                console.log('--')
+                if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+                    z[new_x * new_y + new_y] += 10 * (50 - i)
+                }
             }
         }
     }
