@@ -3,8 +3,7 @@ let recording = false
 let x = []
 let y = []
 let z = []
-// let dx = [-1, 1, -1, 1, /*-1, 1, 0, 0*/]
-// let dy = [1, -1, -1, 1, /*0, 0, -1, 1*/]
+let scroll_dist = 0
 
 // start / stop recording with button (temporary)
 document.getElementById('toggle_button').onclick = function () {
@@ -19,7 +18,7 @@ document.getElementById('toggle_button').onclick = function () {
 };
 
 // click
-plot.onclick = function (e) {
+plot.onclick = function(e) {
     let mouse_x = e.clientX
     let mouse_y = e.clientY
     // console.log(mouse_x + ', ' + mouse_y)
@@ -43,7 +42,7 @@ plot.onclick = function (e) {
 };
 
 // drag
-plot.onmousemove = function (e) {
+plot.onmousemove = function(e) {
     let mouse_x = e.clientX
     let mouse_y = e.clientY
     // console.log(mouse_x + ', ' + mouse_y)
@@ -67,6 +66,14 @@ plot.onmousemove = function (e) {
 };
 
 // scroll
+plot.onscroll = function() {
+    scroll_dist += window.scrollY // later: modify to include change (for scrolling up)
+    for (let i = 0; i < window.innerWidth + 70; i += max(window.innerWidth + 70 - scroll_dist, 1)) {
+        for (let j = 0; j < window.innerHeight; j++) {
+            z[i * window.innerHeight + j]++
+        }
+    }
+}
 
 function init() {
     recording = true
