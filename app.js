@@ -3,8 +3,8 @@ let recording = false
 let x = []
 let y = []
 let z = []
-let dx = [-1, 1, -1, 1]
-let dy = [1, -1, -1, 1]
+// let dx = [-1, 1, -1, 1, /*-1, 1, 0, 0*/]
+// let dy = [1, -1, -1, 1, /*0, 0, -1, 1*/]
 
 // start / stop recording with button (temporary)
 document.getElementById('toggle_button').onclick = function () {
@@ -22,17 +22,22 @@ document.getElementById('toggle_button').onclick = function () {
 plot.onclick = function (e) {
     let click_x = e.clientX
     let click_y = e.clientY
+    // console.log(click_x + ', ' + click_y)
+    // console.log('--')
     if (recording) {
-        for (let i = 1; i <= 50; i++) {
-            for (let j = 0; j < 4; j++) {
-                let new_x = click_x + i * dx[j]
-                let new_y = click_y + i * dy[j]
-                console.log(new_x)
-                console.log(new_y)
-                console.log(z[new_x * new_y + new_y])
-                console.log('--')
-                if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
-                    z[new_x * new_y + new_y] += 10 * (50 - i)
+        let range = 50
+        let step_size = 10
+        for (let i = 0; i <= range; i += step_size) {
+            for (let dx = -i; dx <= i; dx++) {
+                for (let dy = -i; dy <= i; dy++) {
+                    let new_x = click_x + dx
+                    let new_y = click_y + dy
+                    // console.log(new_x + ', ' + new_y)
+                    if (new_x >= 0 && new_x < window.innerWidth + 70 && new_y >= 0 && new_y < window.innerHeight) {
+                        z[new_x * window.innerHeight + new_y] += 10
+                        // console.log(z[new_x * window.innerHeight + new_y])
+                        // console.log('--')
+                    }
                 }
             }
         }
