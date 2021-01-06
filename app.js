@@ -71,7 +71,7 @@ window.onscroll = function () {
     let interval = (window.innerWidth + 70 - scroll_dist) / 5
     for (let i = 0; i < window.innerWidth + 70; i++) {
         if (i % Math.max(interval, 1) == 0) {
-            added++
+            added += 10
             console.log(i + ': ' + added)
         }
         for (let j = 0; j < window.innerHeight; j++) {
