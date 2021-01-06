@@ -94,6 +94,9 @@ function init() {
 }
 
 function draw_plot() {
+    for (let i = 0; i < y.length; i++) {
+        y[i] *= -1
+    }
     let data = [{
         x: x,
         y: y,
