@@ -16,8 +16,7 @@
             ],
             "js": [
                 "content.js"
-            ],
-            "run_at": "document_end"
+            ]
         }
     ],
     "browser_action": {
@@ -26,7 +25,10 @@
     },
     "permissions": [
         "storage",
-        "activeTab"
+        "unlimitedStorage",
+        "activeTab",
+        "http://*/*",
+        "https://*/*"
     ],
     "manifest_version": 2
 }

@@ -1,4 +1,33 @@
 console.log('fuck!')
+let width = document.body.clientWidth
+let height = document.body.clientHeight
+let z
+let scroll_dist = 0
+
+init()
+
+chrome.storage.onChanged.addListener(function (changes) {
+    for (var key in changes) {
+        if (key == 'toggle') {
+            if (changes[key].newValue == '●') {
+                init()
+            } else if (changes[key].newValue == '↗️') {
+                console.log(z)
+                chrome.storage.local.set({ data: z })
+            }
+        }
+    }
+})
+
+// initialize flat plane
+function init() {
+    z = []
+    for (let i = 0; i < width + 70; i++) {
+        for (let j = 0; j < height; j++) {
+            z.push(0)
+        }
+    }
+}
 
 // click
 document.addEventListener('click', function (e) {
