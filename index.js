@@ -1,16 +1,22 @@
 let plot = document.getElementById('plot')
-let x = []
-let y = []
+
+chrome.storage.onChanged.addListener(function (changes) {
+    for (var key in changes) {
+        if (key == 'data') {
+            console.log(changes[key].newValue)
+            draw_plot(changes[key].newValue)
+        }
+    }
+})
 
 function draw_plot(z) {
+    let x = []
+    let y = []
     for (let i = 0; i < window.innerWidth + 70; i++) {
         for (let j = 0; j < window.innerHeight; j++) {
             x.push(i)
-            y.push(j)
+            y.push(-j)
         }
-    }
-    for (let i = 0; i < y.length; i++) {
-        y[i] *= -1
     }
     let data = [{
         x: x,
@@ -27,7 +33,7 @@ function draw_plot(z) {
         colorbar: {
             thickness: 0
         }
-    }];
+    }]
 
     let layout = {
         width: window.innerWidth + 70,
@@ -47,9 +53,9 @@ function draw_plot(z) {
         },
         paper_bgcolor: '#000000',
         plot_bgcolor: '#000000'
-    };
+    }
 
     Plotly.newPlot('plot', data, layout, {
         displayModeBar: false
-    });
+    })
 }

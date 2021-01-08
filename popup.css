@@ -3,16 +3,12 @@
 }
 
 button {
-    width: 70px;
-    height: 70px;
+    width: 30px;
+    height: 30px;
+    margin: -5px;
     background-color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 10px;
-    margin: 10px;
     font-size: 1rem;
     cursor: pointer;
-}
-
-button:hover {
-    font-size: 1.2rem;
 }
