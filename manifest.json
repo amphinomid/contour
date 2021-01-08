@@ -8,12 +8,25 @@
         ],
         "persistent": false
     },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
     "permissions": [
-        "storage"
+        "storage",
+        "activeTab"
     ],
     "manifest_version": 2
 }
