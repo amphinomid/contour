@@ -1,12 +1,7 @@
 let plot = document.getElementById('plot')
 
-chrome.storage.onChanged.addListener(function (changes) {
-    for (var key in changes) {
-        if (key == 'data') {
-            console.log(changes[key].newValue)
-            draw_plot(changes[key].newValue)
-        }
-    }
+chrome.storage.local.get('data', function (result) {
+    draw_plot(result.data)
 })
 
 function draw_plot(z) {
