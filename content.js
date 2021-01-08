@@ -1,4 +1,3 @@
-console.log('fuck!')
 let width = document.body.clientWidth
 let height = document.body.clientHeight
 let z
@@ -11,7 +10,10 @@ chrome.storage.onChanged.addListener(function (changes) {
         if (key == 'toggle') {
             if (changes[key].newValue == '●') {
                 init()
-            } else if (changes[key].newValue == '↗️') {
+                chrome.storage.local.set({ new_tab: true })
+            } else if (changes[key].newValue == '■') {
+                chrome.storage.local.set({ new_tab: false })
+            } else {
                 console.log(z)
                 chrome.storage.local.set({ data: z })
             }

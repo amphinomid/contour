@@ -26,9 +26,11 @@
     "permissions": [
         "storage",
         "unlimitedStorage",
+        "tabs",
         "activeTab",
         "http://*/*",
         "https://*/*"
     ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.plot.ly/plotly-latest.min.js; object-src 'self'",
     "manifest_version": 2
 }
