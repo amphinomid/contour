@@ -13,6 +13,9 @@ function draw_plot(z) {
             y.push(-j)
         }
     }
+    console.log(x)
+    console.log(y)
+    console.log(z)
     let data = [{
         x: x,
         y: y,
