@@ -4,7 +4,7 @@ Going on Facebook is often a boring and useless experience. Even though I don't 
 
 **Directions:** clone the repo, go to chrome://extensions, turn on Developer Mode (top right), click "Load unpacked" and select the repo directory, open the extension by clicking on the icon, click to record, browse page as usual, open the extension, click to stop recording, click again to open art in new tab.
 
-**Note:** this is extremely slow and janky, and I'm pretty sure it only works for a single page (i.e. the data resets if you navigate away while recording). It might also only work once per browser session (I haven't really tested this though), lmao
+**Note:** this is extremely slow and janky, and I'm pretty sure it only works for a single page (i.e. the data resets if you navigate away while recording). It might also only work once per browser session (I haven't really tested this though), lmao... might try to fix it in the near future if I have time
 
 **Examples:**
 ![Black background with white contour lines: vertical, some circular in middle and top right](/not_glitchy.png?raw=true "Not Glitchy")
