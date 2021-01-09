@@ -1,7 +1,7 @@
 {
     "name": "Contour",
     "version": "1.0",
-    "description": "TODO",
+    "description": "Make chaotic contour art as you use Facebook",
     "background": {
         "scripts": [
             "background.js"
