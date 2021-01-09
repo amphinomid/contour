@@ -94,7 +94,7 @@ document.addEventListener('scroll', function () {
             let interval = (width + 70 - scroll_dist) / 5
             for (let i = 0; i < width + 70; i++) {
                 if (i % Math.max(interval, 1) == 0) {
-                    added += 10
+                    added += 0.01
                     // console.log(i + ': ' + added)
                 }
                 for (let j = 0; j < height; j++) {
