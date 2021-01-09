@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toggle.addEventListener('click', function () {
         if (toggle.innerHTML == '●') {
+            chrome.storage.local.set({ new_tab: false })
             chrome.storage.local.set({ toggle: '■' }, function () {
                 toggle.innerHTML = '■'
                 toggle.style.color = 'black'
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 toggle.style.color = 'black'
             })
         } else {
+            chrome.storage.local.set({ new_tab: true })
             chrome.storage.local.set({ toggle: '●' }, function () {
                 toggle.innerHTML = '●'
                 toggle.style.color = 'red'

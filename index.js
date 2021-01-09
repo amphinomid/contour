@@ -1,21 +1,18 @@
 let plot = document.getElementById('plot')
+let x, y, z
 
-chrome.storage.local.get('data', function (result) {
-    draw_plot(result.data)
+chrome.storage.local.get('x', function (result) {
+    x = result.x
+    chrome.storage.local.get('y', function (result) {
+        y = result.y
+        chrome.storage.local.get('z', function (result) {
+            z = result.z
+            draw_plot(x, y, z)
+        })
+    })
 })
 
-function draw_plot(z) {
-    let x = []
-    let y = []
-    for (let i = 0; i < window.innerWidth + 70; i++) {
-        for (let j = 0; j < window.innerHeight; j++) {
-            x.push(i)
-            y.push(-j)
-        }
-    }
-    console.log(x)
-    console.log(y)
-    console.log(z)
+function draw_plot(x, y, z) {
     let data = [{
         x: x,
         y: y,
