@@ -13,6 +13,9 @@ chrome.storage.local.get('x', function (result) {
 })
 
 function draw_plot(x, y, z) {
+    console.log(x)
+    console.log(y)
+    console.log(z)
     let data = [{
         x: x,
         y: y,
