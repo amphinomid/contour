@@ -11,5 +11,3 @@ Going on Facebook is often a boring, useless, and / or infuriating experience. E
 ![Same as previous, but annotated: vertical = scrolling, circular = liking, clicking navbar, and opening messenger conversations](/not_glitchy_annotated.png?raw=true "Same as previous, but annotated: vertical = scrolling, circular = liking, clicking navbar, and opening messenger conversations")
 Not sure what happened with this one:
 ![Black background with some vertical white contour lines and some sort-of-circular white splotches](/very_glitchy.png?raw=true "Black background with some vertical white contour lines and some sort-of-circular white splotches")
-
-Yes this is the shit I spent my last week of break doing
