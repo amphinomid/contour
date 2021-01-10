@@ -1,4 +1,4 @@
-# Contour (Chrome Extension, built with [Plotly.js](https://github.com/plotly/plotly.js))
+# Contour (Built with [Plotly.js](https://github.com/plotly/plotly.js))
 
 Going on Facebook is often a boring, useless, and / or infuriating experience. Even though I don't use Chrome lmao, I made this Chrome extension so you can make chaotic contour art as you use Facebook! (or any other site, idk)
 
